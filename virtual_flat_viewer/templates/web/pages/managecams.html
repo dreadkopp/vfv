@@ -1,3 +1,20 @@
+
+{% load static %}
+
 <h1> {{ flat.Titel }}</h1>
 
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <img width=100% src="{{ MEDIA_URL }}{{ flat.Expose.url }}"></img>
+{% for cam in flat.Kameras.all %}
+  <div class="camera" id="{{ cam.Titel }}"><img src="{% static 'cam.png' %}"></img>{{ cam.Titel }}</div>
+{% endfor %}
+<script>
+  $( function() {
+    $( ".camera" ).draggable();
+  } );
+</script>
+<style>
+  .camera img { width: 25px; height: 25px; border-radius: 50%; )}
+</style>

@@ -29,4 +29,4 @@ urlpatterns = [
     url(r'^(?P<pk>[\w-]+)/$', FlatView.as_view(), name='Wohnung'),
     url(r'^(?P<flat>\w+)/(?P<pk>\w+)/$', CameraView.as_view(), name='Kamera'),
 
-]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
