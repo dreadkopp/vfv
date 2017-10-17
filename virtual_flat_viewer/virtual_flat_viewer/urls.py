@@ -17,7 +17,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.views.generic import TemplateView
 from house.views import HouseView, FlatView, CameraView
-from flat.views import ManageCamsView
+from flat.views import ManageCamsView, setcamera
 
 from django.conf.urls.static import static
 from django.conf import settings
@@ -28,5 +28,6 @@ urlpatterns = [
     url(r'^managecams/(?P<pk>[0-9]+)/$', ManageCamsView.as_view(), name='KameraManagement'),
     url(r'^(?P<pk>[\w-]+)/$', FlatView.as_view(), name='Wohnung'),
     url(r'^(?P<flat>\w+)/(?P<pk>\w+)/$', CameraView.as_view(), name='Kamera'),
+    url(r'^setcamera', setcamera, name="setcameraajax"),
 
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
