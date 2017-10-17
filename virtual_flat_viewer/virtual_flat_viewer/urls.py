@@ -19,13 +19,15 @@ from django.views.generic import TemplateView
 from house.views import HouseView, FlatView, CameraView
 from flat.views import ManageCamsView
 
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', TemplateView.as_view(template_name = "web/pages/home.html"), name='home'),
-    url(r'^managecams/(?P<flat>[0-9]+)/$', ManageCamsView.as_view(), name='KameraManagement'),
+    url(r'^managecams/(?P<pk>[0-9]+)/$', ManageCamsView.as_view(), name='KameraManagement'),
     url(r'^(?P<house>[\w-]+)/$', HouseView.as_view(), name='Haus'),
     url(r'^(?P<house>\w+)/(?P<flat>\w+)/$', FlatView.as_view(), name='Wohnung'),
     url(r'^(?P<house>\w+)/(?P<flat>\w+)/(?P<camera>\w+)$', CameraView.as_view(), name='Kamera'),
 
-]
+]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
