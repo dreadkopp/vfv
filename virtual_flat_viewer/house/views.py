@@ -5,10 +5,9 @@ from .models import house
 from django.views.generic import TemplateView
 
 class HouseView(TemplateView, house):
-
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context.update({"title_house": house})
+        context = super(HouseView, self).get_context_data(**kwargs)
+        context['houses'] = house.objects.all
         return context
 
     model = house

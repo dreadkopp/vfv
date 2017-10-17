@@ -1,1 +1,9 @@
-<h1>this is house {{ house.title }}</h1>
+
+<h1>Häuser</h1>
+{% for node in houses %}
+  <h2>{{ node }}</h2>
+  <h3>Wohnungen:</h3>
+  {% for subnode in node.Wohnungen.all %}
+    <h4>{{ subnode }}</h4>
+  {% endfor %}
+{% endfor %}
