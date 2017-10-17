@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'house',
     'flat',
     'cameras',
+    'django_ajax',
 ]
 
 MIDDLEWARE = [
