@@ -2,7 +2,7 @@
 {% load i18n admin_urls %}
 {% block object-tools-items %}
     <li>
-        <a href="{% url 'KameraManagement' obj.pk %}" class="historylink">Manage Camera Positions</a>
+        <a href="{% url 'KameraManagement' original.pk %}" class="historylink">Manage Camera Positions</a>
     </li>
     {% if has_absolute_url %}
         <li>
