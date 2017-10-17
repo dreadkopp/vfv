@@ -4,6 +4,7 @@
   <h2>{{ node }}</h2>
   <h3>Wohnungen:</h3>
   {% for subnode in node.Wohnungen.all %}
-    <h4>{{ subnode }}</h4>
+
+    <a href="{% url 'home' %}{{ subnode.id }}"><h4>{{ subnode }}</h4></a>
   {% endfor %}
 {% endfor %}

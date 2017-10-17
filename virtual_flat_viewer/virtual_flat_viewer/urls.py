@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', HouseView.as_view(), name='home'),
     url(r'^managecams/(?P<pk>[0-9]+)/$', ManageCamsView.as_view(), name='KameraManagement'),
-    url(r'^(?P<flat>[\w-]+)/$', FlatView.as_view(), name='Wohnung'),
-    url(r'^(?P<flat>\w+)/(?P<camera>\w+)/$', FlatView.as_view(), name='Kamera'),
-    
+    url(r'^(?P<pk>[\w-]+)/$', FlatView.as_view(), name='Wohnung'),
+    url(r'^(?P<flat>\w+)/(?P<pk>\w+)/$', CameraView.as_view(), name='Kamera'),
+
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

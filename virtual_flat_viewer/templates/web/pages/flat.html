@@ -1,1 +1,6 @@
-<h1>this is flat {{ flat.title }}</h1>
+<h1>this is flat {{ flat.Titel }}</h1>
+
+<h2>Kameras</h2>
+{% for node in flat.Kameras.all %}
+  <a href="{{ request.path }}{{ node.id }}"><h3>{{ node.Titel }}</h3></a>
+{% endfor %}

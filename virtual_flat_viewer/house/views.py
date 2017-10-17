@@ -2,7 +2,9 @@ from django.shortcuts import render
 
 # Create your views here.
 from .models import house
-from django.views.generic import TemplateView
+from flat.models import flat
+from cameras.models import camera
+from django.views.generic import TemplateView, DetailView
 
 class HouseView(TemplateView, house):
     def get_context_data(self, **kwargs):
@@ -15,12 +17,12 @@ class HouseView(TemplateView, house):
 
 
 
-class FlatView(TemplateView):
-    model = house
+class FlatView(DetailView):
+    model = flat
     template_name = "web/pages/flat.html"
 
 
 
-class CameraView(TemplateView):
-    model = house
+class CameraView(DetailView):
+    model = camera
     template_name = "web/pages/camera.html"
