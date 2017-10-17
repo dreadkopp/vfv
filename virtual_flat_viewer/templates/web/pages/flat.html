@@ -4,3 +4,4 @@
 {% for node in flat.Kameras.all %}
   <a href="{{ request.path }}{{ node.id }}"><h3>{{ node.Titel }}</h3></a>
 {% endfor %}
+<img width=100% src="{{ MEDIA_URL }}{{ flat.Expose.url }}"></img>
