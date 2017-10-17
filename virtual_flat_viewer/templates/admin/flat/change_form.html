@@ -2,10 +2,7 @@
 {% load i18n admin_urls %}
 {% block object-tools-items %}
     <li>
-        <a href="{% url opts|admin_urlname:'history' original.pk|admin_urlquote %}" class="historylink">{% trans "History" %}</a>
-    </li>
-    <li>
-        <a href="managecams/" class="historylink">Manage Camera Position</a>
+        <a href="/managecams" class="historylink">Manage Camera Positions</a>
     </li>
     {% if has_absolute_url %}
         <li>
