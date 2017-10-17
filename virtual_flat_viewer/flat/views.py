@@ -4,4 +4,4 @@ from django.views.generic import TemplateView
 
 # Create your views here.
 class ManageCamsView(TemplateView):
-    pass
+    template_name = "web/pages/home.html"
