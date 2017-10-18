@@ -6,6 +6,7 @@ from django_ajax.decorators import ajax
 from .models import flat
 
 import json
+import logging
 
 # Create your views here.
 
@@ -18,8 +19,16 @@ class ManageCamsView(DetailView):
 @ajax
 def setcamera(request):
 
-    #parse json to array , set new values to cams
+
     if request.user.is_authenticated:
-        return request.POST
+        #DEBUG
+        logger = logging.getLogger(__name__)
+        logger.error("cams:")
+        val = request.POST['cams']
+        val = json.loads(val)
+        for el in val:
+            string = "cam_id:" + str(el['id']) + "cam_pos_x:" + str(el['left']) + "cam_pos_y:" + str(el['top'])
+            logger.error(string)
+        return "Kamerapositionen gesichert"
     else:
-        return "not permitted"
+        return "Sie haben keine Erlaubnis dies zu tun. Um Änderungen vorzunehmen loggen Sie sich bitte zuerst ein."

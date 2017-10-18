@@ -12,18 +12,11 @@
 {% for cam in flat.Kameras.all %}
   <div class="camera" id="{{ cam.id }}"><img src="{% static 'cam.png' %}"></img>{{ cam.Titel }}</div>
 {% endfor %}
+<button onclick=sendPositions()>Kamerapositionen sichern</button>
 <script>
   $( function() {
     $( ".camera" ).draggable();
   } );
-
-  var positions = $('.camera').map(function() {return $(this).position() }).get();
-  var cameraids = $('.camera').map(function() {return $(this).attr('id') }).get();
-
-  var exposepos = $('#expose').position();
-  var exposeheight = $('#expose').height();
-  var exposewidth = $('#expose').width();
-
 
 
   function getCookie(name) {
@@ -53,23 +46,33 @@
           }
       }
   });
-  var ajaxdata = { positions : positions, exposepos : exposepos, exposeheight : exposeheight, exposewidth : exposewidth }
-  function sendPositions() {
+function sendPositions() {
 
+    var positions = $('.camera').map(function() {return $(this).position() }).get();
+    var cameraids = $('.camera').map(function() {return $(this).attr('id') }).get();
 
     for (var i=0; i < positions.length;i++) {
       positions[i]["id"] = cameraids[i];
     }
-    var request = [ positions, exposepos, [[$('#expose').width()], [$('#expose').height()]] ];
+
+    var senddata = {
+      'exposeY' : JSON.stringify($('#expose').position()['top']),
+      'exposeX' : JSON.stringify($('#expose').position()['left']),
+      'exposewidth' : JSON.stringify($('#expose').width()),
+      'exposeheight' : JSON.stringify($('#expose').height()),
+      'cams' : JSON.stringify(positions)
+    };
 
     $.ajax({
-   type: "POST",
-   data: {data:request},
-   url: "{% url 'setcameraajax' %}",
-   success: function(msg){
-     console.log(msg);
-   }
-});
+     type: "POST",
+     data: senddata,
+     url: "{% url 'setcameraajax' %}",
+     success: function(msg){
+       //alert(msg.content);
+       //DEBUG
+       console.log(msg.content);
+     }
+    });
   }
 </script>
 <style>
