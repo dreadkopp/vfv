@@ -12,11 +12,14 @@ import json
 class ManageCamsView(DetailView):
 
     template_name = "web/pages/managecams.html"
+
     model = flat
 
 @ajax
 def setcamera(request):
 
     #parse json to array , set new values to cams
-
-    return request.POST
+    if request.user.is_authenticated:
+        return request.POST
+    else:
+        return "not permitted"
