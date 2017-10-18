@@ -26,30 +26,20 @@ def setcamera(request):
         exposeheight = int(float(request.POST['exposeheight']))
         exposeY = int(float(request.POST['exposeY']))
         exposeX = int(float(request.POST['exposeX']))
-        #DEBUG
-        logger = logging.getLogger(__name__)
-        logger.error("cams:")
         val = request.POST['cams']
         val = json.loads(val)
-        for el in val:
-            string = "cam_id:" + str(el['id']) + "cam_pos_x:" + str(el['left']) + "cam_pos_y:" + str(el['top'])
-            logger.error(string)
-        logger.error("expose position")
-        logger.error("left: " + str(exposeX) + "px; top: " + str(exposeY) + "px")
-        logger.error("expose dimensions")
-        logger.error("width: " + str(exposewidth) + "px; height: " + str(exposeheight) + "px")
         #calculate postition
         for el in val:
             #sanity check
             if (exposeX > el['left']) or ( el['left'] > (exposeX + exposewidth )) or (exposeY > el['top']) or ( el['top'] > (exposeY + exposeheight)):
-                logger.error("camera " + str(el['id']) + " is not placed in image")
+                pass
             else:
                 relative_left = el['left'] - exposeX
                 relative_top =  el['top'] - exposeY
-                logger.error("relative position of cam " + str(el['id']) + " - left: " + str(relative_left) + " px; top: " + str(relative_top) + "px")
+
                 relative_left_percent =  int( relative_left / exposewidth * 100 )
                 relative_top_percent =   int( relative_top / exposeheight * 100 )
-                logger.error("cam id: " + str(el['id']) + " - left: " + str(relative_left_percent) + "% - top: " + str(relative_top_percent) + "%")
+
                 #update camera
                 cam = camera.objects.get(pk=el['id'])
                 cam.position_left = relative_left_percent
