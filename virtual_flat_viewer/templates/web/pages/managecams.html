@@ -10,7 +10,7 @@
 
 <img id="expose" width=100% src="{{ MEDIA_URL }}{{ flat.Expose.url }}"></img>
 {% for cam in flat.Kameras.all %}
-  <div class="camera" id="{{ cam.Titel }}"><img src="{% static 'cam.png' %}"></img>{{ cam.Titel }}</div>
+  <div class="camera" id="{{ cam.id }}"><img src="{% static 'cam.png' %}"></img>{{ cam.Titel }}</div>
 {% endfor %}
 <script>
   $( function() {
@@ -18,10 +18,12 @@
   } );
 
   var positions = $('.camera').map(function() {return $(this).position() }).get();
+  var cameraids = $('.camera').map(function() {return $(this).attr('id') }).get();
+
   var exposepos = $('#expose').position();
   var exposeheight = $('#expose').height();
   var exposewidth = $('#expose').width();
-  var request = JSON.stringify([ positions, exposepos, exposeheight, exposewidth ])
+
 
 
   function getCookie(name) {
@@ -53,7 +55,21 @@
   });
   var ajaxdata = { positions : positions, exposepos : exposepos, exposeheight : exposeheight, exposewidth : exposewidth }
   function sendPositions() {
-    $.ajax({"type": "POST", "dataType": "json", "url": "http://127.0.0.1:8000/setcamera", "data": ajaxdata})
+
+
+    for (var i=0; i < positions.length;i++) {
+      positions[i]["id"] = cameraids[i];
+    }
+    var request = [ positions, exposepos, [[$('#expose').width()], [$('#expose').height()]] ];
+
+    $.ajax({
+   type: "POST",
+   data: {data:request},
+   url: "{% url 'setcameraajax' %}",
+   success: function(msg){
+     console.log(msg);
+   }
+});
   }
 </script>
 <style>

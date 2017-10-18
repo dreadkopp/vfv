@@ -18,5 +18,5 @@ class ManageCamsView(DetailView):
 def setcamera(request):
 
     #parse json to array , set new values to cams
-    data = request.POST.data
-    return
+
+    return request.POST
