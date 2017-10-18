@@ -18,7 +18,6 @@
     $( ".camera" ).draggable();
   } );
 
-
   function getCookie(name) {
       var cookieValue = null;
       if (document.cookie && document.cookie !== '') {
@@ -60,7 +59,7 @@ function sendPositions() {
       'exposeX' : JSON.stringify($('#expose').position()['left']),
       'exposewidth' : JSON.stringify($('#expose').width()),
       'exposeheight' : JSON.stringify($('#expose').height()),
-      'cams' : JSON.stringify(positions)
+      'cams' : JSON.stringify(positions),
     };
 
     $.ajax({

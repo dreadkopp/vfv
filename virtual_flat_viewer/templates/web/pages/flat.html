@@ -1,7 +1,18 @@
+{% load static %}
+
 <h1>this is flat {{ flat.Titel }}</h1>
 
 <h2>Kameras</h2>
+
+<div id="expose"><img width=100% src="{{ MEDIA_URL }}{{ flat.Expose.url }}"></img>
 {% for node in flat.Kameras.all %}
-  <a href="{{ request.path }}{{ node.id }}"><h3>{{ node.Titel }}</h3></a>
+  <a class="camera" style="left: {{ node.position_left }}%; top: {{ node.position_top }}%" href="{{ request.path }}{{ node.id }}"><img src="{% static 'cam.png' %}"></img>{{ cam.Titel }}</a>
 {% endfor %}
-<img width=100% src="{{ MEDIA_URL }}{{ flat.Expose.url }}"></img>
+</div>
+
+
+<style>
+  .camera img { width: 25px; height: 25px; border-radius: 50%; )}
+  .camera {position: absolute;}
+  #expose {position: relative;}
+</style>
