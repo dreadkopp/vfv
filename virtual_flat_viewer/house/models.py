@@ -9,6 +9,8 @@ class house(models.Model):
     Hausnummer = models.CharField(max_length=8)
     PLZ = models.CharField(max_length=5)
     Ort = models.CharField(max_length=128)
+    Bild = models.ImageField()
+    Beschreibung = models.TextField()
     #Wohnungen = models.ManyToManyField(flat)
 
     def __str__(self):

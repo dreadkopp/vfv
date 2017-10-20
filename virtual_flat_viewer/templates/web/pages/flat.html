@@ -1,33 +1,55 @@
 {% extends "base.html"%}
-
 {% load static %}
-
 {% block content %}
-<h1>Wohnung {{ flat.Titel }}</h1>
-<div class="container" id="Info Wohnung">
-<div class="col-xs-6">
-  <h3>{{ flat.Stockwerk }}, {{ flat.Position }}</h3>
+<div id="info_wohnung">
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <h2>{{ flat.Titel }}</h2>
+                <h4>{{ flat.Stockwerk }}, {{ flat.Position }}</h4>
+                <h5>Klicken Sie auf eine der Kameras für eine interaktive Besichtigung</h5>
+            </div>
+            <div class="col-6">
+                <div class="list-group">
+                    <p class="list-group-item active">Adresse: </p>
+                    <p class="list-group-item">{{ flat.Haus.Straße }} {{ flat.Haus.Hausnummer }}</p>
+                    <p class="list-group-item">{{ flat.Haus.PLZ }} {{ flat.Haus.Ort }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="col-xs-6">
-  <div class="list-group">
-    <a href="#" class="list-group-item active">Adresse</a>
-    <a href="#" class="list-group-item">{{ flat.Haus.Straße }} {{ flat.Haus.Hausnummer }}</a>
-    <a href="#" class="list-group-item">{{ flat.Haus.PLZ }} {{ flat.Haus.Ort }}</a>
-  </div>
-</div>
-</div>
-<h4>Klicken Sie auf eine der Kameras für eine interaktive Besichtigung</h4>
+
 <div class="container-fluid">
-  <div id="expose"><img width=100% src="{{ MEDIA_URL }}{{ flat.Expose.url }}"></img>
-  {% for node in flat.Kameras.all %}
-    <a class="camera" style="left: {{ node.position_left }}%; top: {{ node.position_top }}%" href="{{ request.path }}{{ node.id }}"><img src="{% static 'cam.png' %}"></img>{{ cam.Titel }}</a>
-  {% endfor %}
-  </div>
+    <div id="expose"><img width=100% src="{{ MEDIA_URL }}{{ flat.Expose.url }}"></img>
+        {% for node in flat.Kameras.all %}
+          <a class="camera" style="left: {{ node.position_left }}%; top: {{ node.position_top }}%" href="{{ request.path }}{{ node.id }}"><img src="{% static 'cam.png' %}"></img>{{ cam.Titel }}</a>
+        {% endfor %}
+    </div>
 </div>
 
 <style>
-  .camera img { width: 25px; height: 25px; border-radius: 50%; )}
-  .camera {position: absolute;}
-  #expose {position: relative;}
+    .camera img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        )
+    }
+
+    .camera {
+        position: absolute;
+    }
+
+    #expose {
+        position: relative;
+    }
+
+    #info_wohnung {
+        background-color: #b9b9b9;
+        border-bottom: 1px solid black;
+        padding-bottom: 20px;
+        padding-top: 20px;
+    }
 </style>
+
 {% endblock %}

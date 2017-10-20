@@ -1,4 +1,55 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-<h1>VFV</h1>
+
+   	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 {% block content %}
+{% endblock %}
+
+{% block footer %}
+<div id="footer">
+</br>
+    {% csrf_token %}
+			<div class="contact-section">
+        <div class="container">
+          <h3 style="text-align: center" class="section-header">Kontaktieren Sie uns!</span></h3>
+			<div class="row">
+
+					<div class="col-6 form-line">
+			  			<div class="form-group">
+			  				<label for="exampleInputUsername">Ihr Name</label>
+					    	<input type="text" class="form-control" id="" placeholder=" Max Mustermann">
+				  		</div>
+				  		<div class="form-group">
+					    	<label for="exampleInputEmail">Ihre eMailadresse</label>
+					    	<input type="email" class="form-control" id="exampleInputEmail" placeholder="mustermann@mail.de">
+					  	</div>
+					  	<div class="form-group">
+					    	<label for="telephone">Ihre Telefonnummer</label>
+					    	<input type="tel" class="form-control" id="telephone" placeholder="Mobil oder Festnetz">
+			  			</div>
+			  		</div>
+			  		<div class="col-6">
+			  			<div class="form-group">
+			  				<label for ="description">Ihre Nachricht</label>
+			  			 	<textarea  class="form-control" id="description" placeholder=""></textarea>
+			  			</div>
+			  			<div>
+
+			  				<button type="button" class="btn btn-primary submit"><i class="fa fa-paper-plane" aria-hidden="true"></i>  Nachricht senden</button>
+			  			</div>
+
+					</div>
+
+			</div>
+    </div>
+</div>
+<style>
+#footer {
+  margin-top: 50px;
+    background-color: #b9b9b9;
+    border-top: 1px solid black;
+    box-shadow: 0px 1px 8px 0px black;
+}
+}
+</style>
+
 {% endblock %}

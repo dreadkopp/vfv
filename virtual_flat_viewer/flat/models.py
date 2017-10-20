@@ -8,6 +8,8 @@ class flat(models.Model):
     Stockwerk = models.CharField(max_length=128)
     Position = models.CharField(max_length=128)
     Expose = models.ImageField()
+    Beschreibung = models.TextField()
+    Bild = models.ImageField()
     Kameras = models.ManyToManyField(camera)
     Haus = models.ForeignKey(house)
 

@@ -1,10 +1,47 @@
-
+{% extends "base.html" %}
+{% block content %}
 {% for house in houses %}
-  <h3>Haus: {{ house }}</h3>
-  <h4>Wohnungen:</h4>
-  {% for flat in flats %}
-    {% if flat.Haus.id == house.id %}
-    {{ flat }}
-    {% endif %}
-  {% endfor %}
+
+<div class="container">
+    <h3>Objekt: {{ house }}</h3>
+    <div class="row house">
+        <div class="col">
+            <img src="{{ MEDIA_URL }}{{ house.Bild.url }}" style="width:100%"></img>
+        </div>
+        <div class="col">
+            <div class="row">
+                <div class="col-12">
+                    {{ house.Beschreibung }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="list-group col-12">
+                    <a href="#" class="list-group-item active">Adresse: </a>
+                    <a href="#" class="list-group-item">{{ house.Straße }} {{ house.Hausnummer }}</a>
+                    <a href="#" class="list-group-item">{{ house.PLZ }} {{ house.Ort }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row flats">
+        <div class="col-12">
+            <h4>Wohnungen:</h4>
+            {% for flat in flats %}
+              <div class="row">
+                {% if flat.Haus.id == house.id %}
+                <div class="col-6">
+                    <h4>{{ flat }}</h4>
+                    <p>{{ flat.Beschreibung }}</p>
+                    <a class="btn btn-primary" href="{{ flat.id }}">Virtuelle Besichtigung starten</a>
+                </div>
+                <div class="col-6">
+                    <img src="{{ MEDIA_URL }}{{ flat.Bild.url }}" style="width:100%"></img>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 {% endfor %}
+{% endblock %}

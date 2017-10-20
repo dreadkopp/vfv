@@ -1,5 +1,7 @@
-<h1>This is camera {{ camera.Titel }}</h1>
-<video id="cam" width="100%" autoplay>
+{% extends "base.html" %}
+{% block content %}
+<video id="cam" width="100%" autoplay control>
   <source src="{{ camera.URL }}" type="video/mp4">
   Your browser does not support HTML5 video.
 </video>
+{% endblock %}
