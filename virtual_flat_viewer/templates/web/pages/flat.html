@@ -1,5 +1,7 @@
 {% extends "base.html"%}
 {% load static %}
+{% block header %}
+{% endblock %}
 {% block content %}
 <div id="info_wohnung">
     <div class="container">
@@ -7,19 +9,23 @@
             <div class="col-6">
                 <h2>{{ flat.Titel }}</h2>
                 <h4>{{ flat.Stockwerk }}, {{ flat.Position }}</h4>
-                <h5>Klicken Sie auf eine der Kameras für eine interaktive Besichtigung</h5>
+                <p>{{ flat.Beschreibung }}</p>
             </div>
             <div class="col-6">
                 <div class="list-group">
                     <p class="list-group-item active">Adresse: </p>
                     <p class="list-group-item">{{ flat.Haus.Straße }} {{ flat.Haus.Hausnummer }}</p>
                     <p class="list-group-item">{{ flat.Haus.PLZ }} {{ flat.Haus.Ort }}</p>
+                    <p class="list-group-item active">Informationen: </p>
+                    <p class="list-group-item">Fläche: {{ flat.Fläche }}</p>
+                    <p class="list-group-item">Kaltmiete: {{ flat.Kaltmiete }}</p>
+                    <p class="list-group-item">Objektnummer: {{ flat.Objektnummer }}</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+<h5 style="text-align: center">Klicken Sie auf eine der Kameras für eine interaktive Besichtigung</h5>
 <div class="container-fluid">
     <div id="expose"><img width=100% src="{{ MEDIA_URL }}{{ flat.Expose.url }}"></img>
         {% for node in flat.Kameras.all %}

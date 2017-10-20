@@ -12,6 +12,9 @@ class flat(models.Model):
     Bild = models.ImageField()
     Kameras = models.ManyToManyField(camera)
     Haus = models.ForeignKey(house)
+    Fläche = models.CharField(max_length=32)
+    Kaltmiete = models.CharField(max_length=32)
+    Objektnummer = models.CharField(max_length=32)
 
     def __str__(self):
         return self.Titel

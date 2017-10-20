@@ -1,6 +1,13 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
    	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+{% block header %}
+<div id="header" style="width:100%">
+  </br>
+  <h1 style="text-align: center;"> Herzlich willkommen zu Ihrer virtuellen Wohnungsbesichtigung</h1>
+  </br>
+</div>
+{% endblock %}
 {% block content %}
 {% endblock %}
 
@@ -24,7 +31,11 @@
 					  	</div>
 					  	<div class="form-group">
 					    	<label for="telephone">Ihre Telefonnummer</label>
-					    	<input type="tel" class="form-control" id="telephone" placeholder="Mobil oder Festnetz">
+					    	<input type="tel" class="form-control" id="telephone" placeholder="Mobil oder Festnetz (optional)">
+			  			</div>
+              <div class="form-group">
+					    	<label for="objectID">Objektnummer</label>
+					    	<input type="tel" class="form-control" id="objectID" placeholder="optional">
 			  			</div>
 			  		</div>
 			  		<div class="col-6">
@@ -43,13 +54,23 @@
     </div>
 </div>
 <style>
+#header {
+  background-color: #b9b9b9;
+  border-bottom: 1px solid black;
+}
+textarea {
+  height: 15em;
+}
 #footer {
   margin-top: 50px;
     background-color: #b9b9b9;
     border-top: 1px solid black;
-    box-shadow: 0px 1px 8px 0px black;
 }
+body .btn-primary, body .list-group-item.active {
+    background-color: #4c8abf;
+    border-color: #4c8abf;
 }
+
 </style>
 
 {% endblock %}
