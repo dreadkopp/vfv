@@ -1,10 +1,10 @@
 
-<h1>Häuser</h1>
-{% for node in houses %}
-  <h2>{{ node }}</h2>
-  <h3>Wohnungen:</h3>
-  {% for subnode in node.Wohnungen.all %}
-
-    <a href="{% url 'home' %}{{ subnode.id }}"><h4>{{ subnode }}</h4></a>
+{% for house in houses %}
+  <h3>Haus: {{ house }}</h3>
+  <h4>Wohnungen:</h4>
+  {% for flat in flats %}
+    {% if flat.Haus.id == house.id %}
+    {{ flat }}
+    {% endif %}
   {% endfor %}
 {% endfor %}

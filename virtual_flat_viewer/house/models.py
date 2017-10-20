@@ -1,5 +1,5 @@
 from django.db import models
-from flat.models import flat
+#from flat.models import flat
 
 # Create your models here.
 
@@ -9,7 +9,7 @@ class house(models.Model):
     Hausnummer = models.CharField(max_length=8)
     PLZ = models.CharField(max_length=5)
     Ort = models.CharField(max_length=128)
-    Wohnungen = models.ManyToManyField(flat)
+    #Wohnungen = models.ManyToManyField(flat)
 
     def __str__(self):
         return self.Titel

@@ -7,12 +7,20 @@ from cameras.models import camera
 from django.views.generic import TemplateView, DetailView
 
 class HouseView(TemplateView, house):
+
+
     def get_context_data(self, **kwargs):
+        flats = flat.objects.all()
+        houses = []
+        for node in flats:
+            houses.append(node.Haus)
+        houses = list(set(houses))    
         context = super(HouseView, self).get_context_data(**kwargs)
-        context['houses'] = house.objects.all
+        context['flats'] = flats
+        context['houses'] = houses
         return context
 
-    model = house
+    model = flat
     template_name = "web/pages/house.html"
 
 
