@@ -18,3 +18,6 @@ class flat(models.Model):
 
     def __str__(self):
         return self.Titel
+    class Meta:
+        verbose_name = 'Wohnung'
+        verbose_name_plural = 'Wohnungen'

@@ -10,3 +10,7 @@ class camera(models.Model):
 
     def __str__(self):
         return self.Titel
+
+    class Meta:
+        verbose_name = 'Kamera'
+        verbose_name_plural = 'Kameras'

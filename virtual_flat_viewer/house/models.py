@@ -15,3 +15,7 @@ class house(models.Model):
 
     def __str__(self):
         return self.Titel
+
+    class Meta:
+        verbose_name = 'Haus'
+        verbose_name_plural = 'Häuser'
