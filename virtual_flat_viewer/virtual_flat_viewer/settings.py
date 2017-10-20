@@ -25,7 +25,7 @@ SECRET_KEY = 'l^si5wc+toery3)h4ue1y!lg0-!h)5vx*n%gmx($ired7y7&@8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['deploy.p-sol.de']
 
 
 # Application definition
